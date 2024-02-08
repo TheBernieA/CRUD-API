@@ -1,0 +1,36 @@
+
+JWT Structure
+
+eyJhbGci0iJIUZI1NiIsInR5cC161kpXVCJ9.
+eyJzdwIiOiIxMjMONTY30DK wIiwibmFtZSI6IkpvaG4gRG9lIiwiaWFOIjoxNTE2MjM5MDIyfQ.
+Sf1KxwRJ SMEKKF2QT4fwpMeJf36P0k6yJV_adQssw5c
+
+
+Header contains metadata about the token (type, hashing algorithm etc).
+
+Payload contains claims (statements about an entity for example, a user) and additional data.
+
+Signature is the result of the encoded header, the encoded payload, signed against a secret.
+
+
+Practical Example
+
+User "John Doe" signs into our application. We want to create a token with which John can authorize for a while.
+
+We create a payload containing the username and role. We then sign the token with an expiry time of 1 hour. We use a secret for signing.
+
+{
+"username": "John Doe",
+"role": "admin",
+"iat": 1516239020, issued at
+"exp": 1516242620 expiry date
+}
+
+More about JSON Web Tokens
+
+JSON Web Tokens can be decoded by anyone. 
+They should not contain sensitive information such as passwords.
+It is useful for front-end applications to use these tokens to toggle features conditionally. 
+For example, if a user is an administrator, we could show or hide a certain button based on the claims in the token.
+
+Finally JWTS should ideally be short-lived. (FOR MAYBE WHEN THE ROLE OF A USER CHANGES)
